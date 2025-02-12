@@ -1,0 +1,46 @@
+package application;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+		Scanner scanner = new Scanner(System.in);
+
+        List<String> resultados = new ArrayList<>();
+
+        int numero = scanner.nextInt();
+        int chave, valor;
+        
+        Map<Integer, Integer> usuarios = new HashMap<>();
+        
+        for (int i=0;i<numero;i++) {
+        	usuarios.put(chave = scanner.nextInt(), valor = scanner.nextInt());
+        	System.out.println("user " + chave + " OK");
+        }
+        
+        numero = scanner.nextInt();
+        int verifica;
+                
+        for (int i=0; i<numero;i++) {
+        	verifica = scanner.nextInt();
+        	if (usuarios.containsKey(verifica) == true) 
+        		System.out.println(verifica + " registered user");
+        	else
+        		System.out.println(verifica + " invalid user");
+        }
+        
+        scanner.close();
+        
+        for (String resultado : resultados) {
+            System.out.println(resultado);
+        }
+        
+    }
+
+}
