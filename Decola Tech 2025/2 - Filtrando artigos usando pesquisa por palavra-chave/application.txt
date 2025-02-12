@@ -1,0 +1,41 @@
+// Para ler e escrever dados em Java, aqui na DIO padronizamos da seguinte forma: 
+// - new Scanner(System.in): cria um leitor de Entradas, com métodos úteis com prefixo "next";
+// - System.out.println:.imprime um texto de Saída (Output) e pulando uma linha.  
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // TODO: Crie uma lista de artigos (String):
+        
+        Map<String, String> mapa = new HashMap<>();
+		
+
+        String termo = scanner.nextLine().toLowerCase();
+        
+        //TODO: Crie uma lista para armazenar os artigos que correspondem ao termo pesquisado:
+        
+        mapa.put("angular", " - Introducao ao Angular \n - Rotas no Angular");
+    		mapa.put("services", " - Como usar Services");
+    		mapa.put("pipes", " - Criando Pipes");
+        
+        // TODO: Percorra a lista de artigos e verificar se o termo pesquisado está contido no título:
+        
+        boolean valor = mapa.containsKey(termo);
+		
+    		if(valor == true) {
+    			System.out.println("Artigos encontrados: ");
+    			System.out.println(mapa.get(termo));
+    		}
+    		else 
+    			System.out.println("Nenhum artigo encontrado para o termo: " + termo);
+        
+        // TODO: Verificar se algum artigo foi encontrado.
+        // Se a lista de resultados estiver vazia, imprimir "Nenhum artigo encontrado para o termo: {termo}".
+        // Caso contrário, imprimir "Artigos encontrados:" e listar os artigos encontrados.
+
+        scanner.close();
+    }
+}
