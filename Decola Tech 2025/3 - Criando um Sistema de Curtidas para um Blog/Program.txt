@@ -1,0 +1,114 @@
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+public class Program {
+	public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        Artigo artigo;
+        Map<Integer, Artigo> mapa = new HashMap<>();
+        
+        mapa.put(1, new Artigo(1, "Introdução ao Angular", "Carlos Silva", "10/01/2024", 10));
+        mapa.put(2, new Artigo(2, "Como usar Services", "Ana Souza", "15/02/2024", 5));
+        mapa.put(3, new Artigo(3, "Rotas no Angular", "Joao Pedro", "02/03/2024", 2));
+        mapa.put(4, new Artigo(4, "Criando Pipes", "Maria Oliveira", "12/03/2024", 8));
+        
+        String entrada = sc.nextLine().trim();
+        String[] partes = entrada.split(" ");
+
+        try {
+        while (true) {
+        	
+        	int[] numeros = new int[partes.length];
+        	for (int i = 0; i < partes.length; i++) 
+        	    numeros[i] = Integer.parseInt(partes[i]);
+        	
+        	if (partes[0].contains("3"))
+        		System.exit(0);
+        	
+        	String saida = sc.nextLine();
+        	if (numeros[0] == 1) {
+        		if (numeros[1] == 1) {
+        			artigo = mapa.get(1);
+        			artigo.adicionarCurtidas(numeros[2]);
+        			mapa.put(1, artigo);
+        			System.out.println("Curtidas atualizadas: " + artigo.getCurtidas());
+        		} 
+        		else if (numeros[1] == 2) {
+        			artigo = mapa.get(2);
+        			artigo.adicionarCurtidas(numeros[2]);
+        			mapa.put(2, artigo);
+        			System.out.println("Curtidas atualizadas: " + artigo.getCurtidas());
+        		}
+        		else if (numeros[1] == 3) {
+        			artigo = mapa.get(3);
+        			artigo.adicionarCurtidas(numeros[2]);
+        			mapa.put(3, artigo);
+        			System.out.println("Curtidas atualizadas: " + artigo.getCurtidas());
+        		}
+        		else if (partes.length < 3) 
+        			System.out.println("Erro: Informe a quantidade de curtidas.");
+        		else
+        			System.out.println("Erro: Artigo nao encontrado!");
+        	}
+        	else if (numeros[0] == 2) {
+        		if (numeros[1] == 1) {
+        			artigo = mapa.get(1);
+        			System.out.println(artigo.obterInformacoes());
+        		}
+        		else if (numeros[1] == 2) {
+        			artigo = mapa.get(2);
+        			System.out.println(artigo.obterInformacoes());
+        		}
+        		else if (numeros[1] == 3) {
+        			artigo = mapa.get(3);
+        			System.out.println(artigo.obterInformacoes());
+        		}
+        		else {
+        			artigo = mapa.get(4);
+        			System.out.println(artigo.obterInformacoes());
+        		}
+        	}
+        	
+        	if (numeros[0] != 1 && numeros[0] != 2)
+        		System.out.println("Erro: Opcao invalida! Use 1 para add curtidas ou 2 para consultar.");
+        	
+        	if (saida.equals("Sair") || partes[0].contains("3")) 
+        		break;
+        }
+        
+        } catch(NumberFormatException e) {
+        	System.out.println("Erro: Entrada invalida! Informe uma opcao e um ID.");
+        }
+	}
+}
+
+class Artigo {
+	int id;
+	String titulo;
+	String autor;
+	String dataPublicacao;
+	int curtidas;
+
+	public Artigo(int id, String titulo, String autor, String dataPublicacao, int curtidasIniciais) {
+		this.id = id;
+		this.titulo = titulo;
+		this.autor = autor;
+		this.dataPublicacao = dataPublicacao;
+		this.curtidas = curtidasIniciais;
+	}
+
+	public void adicionarCurtidas(int quantidade) {
+		this.curtidas += quantidade;
+	}
+
+	public int getCurtidas() {
+		return curtidas;
+	}
+
+	public String obterInformacoes() {
+		return titulo + " | " + autor + " | " + dataPublicacao + " | Curtidas: " + curtidas;
+	}
+}
+
